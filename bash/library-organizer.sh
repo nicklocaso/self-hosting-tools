@@ -1,5 +1,15 @@
 #!/bin/bash
 
+# Archive mode is -rlptgoD (no -A,-X,-U,-N,-H)
+# -r recurse into directories
+# -l copy symlinks as symlinks
+# -p preserve permissions
+# -t preserve modification times
+# -g preserve group
+# -o preserve owner (super-user only)
+# --devices preserve device files (super-user only)
+# --specials preserve special files
+
 if [ $# -ne 2 ]; then
     echo "Usage: $0 source_folder destination_folder"
     exit 1
@@ -52,7 +62,8 @@ while read file; do
     if [ -n "$SSH_LOGIN" ]; then
         rsync -ahP --rsync-path="mkdir -p ${CLEAN_DESTINATION}/${year}/${month}/ && rsync" "$file" "${DESTINATION}/${year}/${month}/"
     else
-        rsync -a --partial "$file" "${DESTINATION}/${year}/${month}/"
+        mkidr -p "${CLEAN_DESTINATION}/${year}/${month}/"
+        rsync -ahP --partial "$file" "${DESTINATION}/${year}/${month}/"
     fi
 
 done <"${SOURCE_LIST}"
