@@ -9,7 +9,7 @@ The scripts included in this repository are designed to automate common system a
 To use these scripts, simply clone the repository to your server using the following command:
 
 ```bash
-git clone https://github.com/your-username/self-hosting-tools.git
+git clone https://github.com/nicklocaso/self-hosting-tools.git
 ```
 
 Once cloned, navigate to the directory of the desired script and run it using the appropriate command.

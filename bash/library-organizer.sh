@@ -62,7 +62,7 @@ while read file; do
     if [ -n "$SSH_LOGIN" ]; then
         rsync -ahP --rsync-path="mkdir -p ${CLEAN_DESTINATION}/${year}/${month}/ && rsync" "$file" "${DESTINATION}/${year}/${month}/"
     else
-        mkidr -p "${CLEAN_DESTINATION}/${year}/${month}/"
+        mkdir -p "${CLEAN_DESTINATION}/${year}/${month}/"
         rsync -ahP --partial "$file" "${DESTINATION}/${year}/${month}/"
     fi
 
